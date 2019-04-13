@@ -1,10 +1,4 @@
-<?php 
-include "sql_connect.php";
-$key = 12315;
-$QueryString = "SELECT * FROM kamar WHERE no_ktp LIKE '%$key%' or id_kamar LIKE '%$key%' or no_kamar LIKE '%$key%' or luas_kamar LIKE '%$key%' or harga_kamar LIKE '%$key%' or status LIKE '%$key%'";
-	$SQL = mysqli_query($connect,$QueryString); 
-?>
-
+//PHP BAGIAN YANG LAIN
 
 <html>
 <head>
@@ -47,20 +41,7 @@ $QueryString = "SELECT * FROM kamar WHERE no_ktp LIKE '%$key%' or id_kamar LIKE 
 			<th>Status</th>
 			
 		</tr>
-		<?php
-			foreach ($SQL as $data) {
-				echo "
-					<tr>
-						<td>$data[no_ktp]</td>
-						<td>$data[id_kamar]</td>
-						<td>$data[no_ktp]</td>
-						<td>$data[luas_kamar]</td>
-						<td>$data[harga_kamar]</td>
-						<td>$data[status]</td>
-					</tr>
-				";
-			}
-		?>
+		//PHP BAGIAN YANG LAIN
 	</table>
 	
 <?php include('footer.php'); ?> 
