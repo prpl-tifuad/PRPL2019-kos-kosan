@@ -1,15 +1,10 @@
 <?php 
 class Item{
-	 var $no_kamar;//var int
-	 //var string
-	 var $ukuran;
-	 //var float
-	 var $harga;
-	 //var int
-	 var $status;
-	 //
-	 var $keterangan;
-	 //
-	 var $quantity;
+ var $id;
+ var $name;
+ var $size;
+ var $price;
+ var $quantity;
+ var $description;
 }
  ?>
