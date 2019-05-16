@@ -1,35 +1,26 @@
 <?php 
+// mengaktifkan session php
+session_start();
 
-require_once("sql_connect.php");
+// menghubungkan dengan database
+include 'sql_connect.php';
 
-if(isset($_POST['login'])){
+// menangkap data yang dikirim dari form
+$username = $_POST['username'];
+$password = md5($_POST['password']);
 
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+// menyeleksi data admin dengan username dan password yang sesuai
+$sql = "SELECT * FROM user where username='$username' and password='$password'";
+$data = mysqli_query($konek, $sql);
 
-    $sql = "SELECT * FROM user WHERE username=:username OR email=:email";
-    $stmt = $db->prepare($sql);
-    
-    // bind parameter ke query
-    $params = array(
-        ":username" => $username,
-        ":email" => $username
-    );
+// menghitung jumlah data yang ditemukan
+$cek = mysqli_num_rows($data);
 
-    $stmt->execute($params);
-
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // jika user terdaftar
-    if($user){
-        // verifikasi password
-        if(password_verify($password, $user["password"])){
-            // buat Session
-            session_start();
-            $_SESSION["user"] = $user;
-            // login sukses, alihkan ke halaman timeline
-            header("Location: admin/timeline.php");
-        }
-    }
+if($cek > 0){
+    $_SESSION['username'] = $username;
+    $_SESSION['status'] = "login";
+    header("location:admin/timeline.php");
+}else{
+    header("location:index.php?pesan=gagal");
 }
 ?>
