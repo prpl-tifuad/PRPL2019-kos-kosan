@@ -2,8 +2,8 @@
 include "sql_connect.php";
 $key = $_POST['cari'];
 echo "Keyword pencarian = $key";
-$QueryString = "SELECT * FROM fasilitas WHERE id_fasilitas LIKE '%$key%' or nama_fasilitas LIKE '%$key%' or ket_fasilitas LIKE '%$key%' or harga_fasilitas LIKE '%$key%'";
-	$SQL = mysqli_query($connect,$QueryString); 
+$sql = "SELECT * FROM fasilitas WHERE id_fasilitas LIKE '%$key%' or nama_fasilitas LIKE '%$key%' or ket_fasilitas LIKE '%$key%' or harga_fasilitas LIKE '%$key%'";
+$SQL = mysqli_query($konek, $sql);
 ?>
 
 <html>

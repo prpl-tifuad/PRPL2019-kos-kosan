@@ -1,7 +1,7 @@
 <?php
 	include 'sql_connect.php';
-	$query_command = "SELECT * FROM fasilitas";
-	$SQL = mysqli_query($connect,$query_command); 
+	$sql = "SELECT * FROM fasilitas";
+	$SQL = mysqli_query($konek, $sql);
 ?>
 
 <html>
@@ -21,8 +21,7 @@
 		<?php
 		include 'sql_connect.php';
 		
-		$fasilitas = mysqli_query($connect, "SELECT * from fasilitas");
-		foreach ($fasilitas as $row) {
+		foreach ($SQL as $row) {
 			echo "<tr>
 		<td>" . $row['id_fasilitas'] . "</td>
 		<td>" . $row['nama_fasilitas'] . "</td>
