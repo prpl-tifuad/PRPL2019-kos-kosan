@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2019 at 06:39 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Jun 19, 2019 at 06:30 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `proyek_prpl`
+-- Database: `prpl`
 --
 
 -- --------------------------------------------------------
@@ -46,28 +46,26 @@ INSERT INTO `fasilitas` (`id_fasilitas`, `nama_fasilitas`, `ket_fasilitas`, `har
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kamar`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `kamar` (
-  `no_ktp` varchar(16) NOT NULL,
-  `id_kamar` varchar(6) NOT NULL,
-  `no_kamar` varchar(5) NOT NULL,
-  `luas_kamar` varchar(15) NOT NULL,
-  `harga_kamar` int(15) NOT NULL,
-  `status` enum('berisi','kosong') NOT NULL
+CREATE TABLE `orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `datecreation` varchar(20) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `orderid` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kamar`
+-- Dumping data for table `orders`
 --
 
-INSERT INTO `kamar` (`no_ktp`, `id_kamar`, `no_kamar`, `luas_kamar`, `harga_kamar`, `status`) VALUES
-('1234121289346781', '12315', '1', '3x3', 500000, 'berisi'),
-('1235122689034571', '12657', '2', '3x3', 500000, 'berisi'),
-('7193579739481211', '12893', '3', '3x3', 500000, 'berisi'),
-('8967264901645372', '21590', '5', '4x4', 650000, 'berisi'),
-('8264738901234578', '25613', '4', '3x4', 600000, 'berisi');
+INSERT INTO `orders` (`id`, `username`, `datecreation`, `status`, `orderid`, `productid`, `price`, `quantity`) VALUES
+(1, 'aji gelar', '2019-06-19', 'berisi', 63512, 112233, 50000, 5);
 
 -- --------------------------------------------------------
 
@@ -77,25 +75,19 @@ INSERT INTO `kamar` (`no_ktp`, `id_kamar`, `no_kamar`, `luas_kamar`, `harga_kama
 
 CREATE TABLE `pelanggan` (
   `no_ktp` varchar(16) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama_pel` varchar(50) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
   `no_ortu` varchar(20) NOT NULL,
-  `alamat` varchar(50) NOT NULL,
-  `jk` enum('L','P') NOT NULL
+  `alamat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`no_ktp`, `nama_pel`, `no_hp`, `no_ortu`, `alamat`, `jk`) VALUES
-('1234121289346781', 'Andi Ariando', '085211667788', '085367901341', 'Jl.Lely 3, No.981, Yogyakarta', 'L'),
-('1235122689034571', 'Ivan Gunawan', '087798134516', '088519239182', 'Jl.Diponegoro, No.908, Jawa Tengah ', 'L'),
-('1700018013', 'Refaldi', '08525252678', '08526776453', 'Jl,Warungboto', 'L'),
-('7193579739481211', 'Roni Derian', '081311221231', '085287094671', 'Jl.C Simanjuntak, No112, Jawa Timur', 'L'),
-('8264738901234578', 'Ivan Gunawan', '087766853910', '081323678913', 'Jl.Diponegoro, No.908, Jawa Tengah ', 'L'),
-('876744655765', 'Reza', '8987787876', '43543654654', 'Jl.Ani', 'L'),
-('8967264901645372', 'Rei Yahian', '085378609914', '085276389155', 'Jl.Ahmad Yani, No882, Kalimantan Selatan', 'L');
+INSERT INTO `pelanggan` (`no_ktp`, `id`, `nama_pel`, `no_hp`, `no_ortu`, `alamat`) VALUES
+('187238723', 1, 'aji gelar', '085266778899', '085266771155', 'Borobudur');
 
 -- --------------------------------------------------------
 
@@ -120,26 +112,26 @@ INSERT INTO `pemakaian` (`no_ktp`, `id_fasilitas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pemesanan`
+-- Table structure for table `product`
 --
 
-CREATE TABLE `pemesanan` (
-  `no_ktp` varchar(16) NOT NULL,
-  `no_pemesanan` varchar(5) NOT NULL,
-  `tgl_pemesanan` date NOT NULL,
-  `ket_pemesanan` varchar(100) NOT NULL
+CREATE TABLE `product` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `size` varchar(10) NOT NULL,
+  `price` float NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `description` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pemesanan`
+-- Dumping data for table `product`
 --
 
-INSERT INTO `pemesanan` (`no_ktp`, `no_pemesanan`, `tgl_pemesanan`, `ket_pemesanan`) VALUES
-('1234121289346781', '1232A', '2018-11-01', ''),
-('8967264901645372', '1OP27', '2018-10-05', ''),
-('8264738901234578', '2S12A', '2018-12-02', ''),
-('1235122689034571', '45B12', '2018-11-16', ''),
-('7193579739481211', 'C3412', '2018-12-07', '');
+INSERT INTO `product` (`id`, `name`, `size`, `price`, `quantity`, `description`) VALUES
+(112233, 'Kamar 1', '3x3', 50000, 1, ''),
+(113344, 'Kamar 2', '3x4', 60000, 1, ''),
+(114455, 'Kamar 3', '5x5', 100000, 1, '');
 
 -- --------------------------------------------------------
 
@@ -149,18 +141,18 @@ INSERT INTO `pemesanan` (`no_ktp`, `no_pemesanan`, `tgl_pemesanan`, `ket_pemesan
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `username` varchar(225) NOT NULL,
-  `password` varchar(225) NOT NULL
+  `username` varchar(50) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `confirm-password` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `username`, `password`) VALUES
-(4, 'himawan@gmail.com', 'himawan', '$2y$10$VztTOpzjL96iKPSZ0TVnJOWfDcCucDs0S3VoS0rhDQKp8Cgwsko6S'),
-(5, 'ergian@gmail.com', 'ergian', '$2y$10$1.Aog6WKCjR.g.mklfUSpu2rvPLmZVgtyjI0Q68IpEPsDr527MHi6');
+INSERT INTO `user` (`id`, `username`, `password`, `confirm-password`) VALUES
+(1, 'aji', 'e10adc3949ba59abbe56e057f20f883e', 'e10adc3949ba59abbe56e057f20f883e-password'),
+(2, 'himawan', 'e10adc3949ba59abbe56e057f20f883e', 'e10adc3949ba59abbe56e057f20f883e-password');
 
 --
 -- Indexes for dumped tables
@@ -173,17 +165,17 @@ ALTER TABLE `fasilitas`
   ADD PRIMARY KEY (`id_fasilitas`);
 
 --
--- Indexes for table `kamar`
+-- Indexes for table `orders`
 --
-ALTER TABLE `kamar`
-  ADD PRIMARY KEY (`id_kamar`),
-  ADD KEY `no_ktp` (`no_ktp`);
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  ADD PRIMARY KEY (`no_ktp`);
+  ADD PRIMARY KEY (`no_ktp`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `pemakaian`
@@ -193,11 +185,10 @@ ALTER TABLE `pemakaian`
   ADD KEY `id_fasilitas` (`id_fasilitas`);
 
 --
--- Indexes for table `pemesanan`
+-- Indexes for table `product`
 --
-ALTER TABLE `pemesanan`
-  ADD PRIMARY KEY (`no_pemesanan`),
-  ADD KEY `no_ktp` (`no_ktp`);
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -210,33 +201,32 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114456;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `kamar`
+-- Constraints for table `pelanggan`
 --
-ALTER TABLE `kamar`
-  ADD CONSTRAINT `kamar_ibfk_1` FOREIGN KEY (`no_ktp`) REFERENCES `pemesanan` (`no_ktp`);
-
---
--- Constraints for table `pemakaian`
---
-ALTER TABLE `pemakaian`
-  ADD CONSTRAINT `pemakaian_ibfk_1` FOREIGN KEY (`no_ktp`) REFERENCES `pelanggan` (`no_ktp`),
-  ADD CONSTRAINT `pemakaian_ibfk_2` FOREIGN KEY (`id_fasilitas`) REFERENCES `fasilitas` (`id_fasilitas`);
-
---
--- Constraints for table `pemesanan`
---
-ALTER TABLE `pemesanan`
-  ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`no_ktp`) REFERENCES `pelanggan` (`no_ktp`);
+ALTER TABLE `pelanggan`
+  ADD CONSTRAINT `pelanggan_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
