@@ -1,19 +1,26 @@
-<?php include("auth.php"); ?>
-
 <html>
 <head>
-    <title>Admin Area</title>
+	<title>ADMIN</title>
 </head>
 <body>
+	<h2>Halaman Admin</h2>
+	
+	<br/>
 
-    <div style="text-align:center">
-        <h2>Admin Area</h2>
-        <p><a href="../index.php">Home</a> / <a href="/prpl/admin/logout.php">Logout</a></p>
+	<!-- cek apakah sudah login -->
+	<?php 
+	session_start();
+	if($_SESSION['status']!="login"){
+		header("location:../index.php?pesan=belum_login");
+	}
+	?>
 
-        <p>Selamat datang di Admin Area</p>
-        <h3><?php echo  $_SESSION["user"]["username"] ?></h3>
-        <p><?php echo $_SESSION["user"]["email"] ?></p>
-    </div>
+	<h4>Selamat datang, <?php echo $_SESSION['username']; ?>! anda telah login.</h4>
+	<h4>Klik Tautan berikut : <a href="profile.php">My Profile</a> untuk melihat data diri anda secara lengkap</h4>
+	<br/>
+	<br/>
+
+	<a href="logout.php">LOGOUT</a>
 
 </body>
 </html>
