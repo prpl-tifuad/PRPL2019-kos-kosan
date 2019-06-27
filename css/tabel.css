@@ -2,12 +2,9 @@
 	text-align: center;
 	align: center;
 	width: 100%;
-	background-color: black;
-	color: white;
 	border-color: white;
 }
 
-body{
-	background-color: black;
-	color: white;
+form{
+	margin-bottom: -1em;
 }
