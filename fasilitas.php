@@ -12,8 +12,8 @@
 <?php include('header.php'); ?> 
 
 	<form method="post" action="searching3.php">
-		<input type="text" name="cari">
-		<input type="submit" name="kirim" value="cari">
+		<input type="text" name="cari" placeholder="Pencarian">
+		<input type="submit" name="kirim" value="cari" style="visibility:hidden;">
 	</form>
 	
 	<table class = "tabel_kamar" border="1">

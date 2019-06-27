@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <head>
 	<link rel="stylesheet" href="css/rent.css">
+	<link href="css/index.css" type="text/css" rel="stylesheet" />
+	<link href="css/pageshow.css" type="text/css" rel="stylesheet" />
+	<link href="css/tabel.css" type="text/css" rel="stylesheet" />
 </head>
-<body>
+<body align="center">
 <?php 
 // Start the session
 session_start();
@@ -56,7 +59,7 @@ if(isset($_POST['update'])) {
 ?>
 <h2> Items in your cart: </h2> 
 <form method="POST">
-<table id="t01">
+<table id="t01" align="center">
 <tr>
 	<th>Option</th>
 	<th>ID</th>

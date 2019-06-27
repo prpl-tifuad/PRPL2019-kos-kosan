@@ -16,19 +16,11 @@
 	<footer class="footer-distributed">
 		<div class="footer-left">
 
-			<h3>Company<span>logo</span></h3>
+			<h3><img src="image/logo.png" alt="Flowers in Chania" style="width:180px;height:55px;"></h3>
 
-			<p class="footer-links">
-				<a href="index.php">Home</a>
-				·
-				<a href="kamar.php">Kamar</a>
-				·
-				<a href="fasilitas.php">Fasilitas</a>
-				·
-				<a href="about.php">Tentang Kami</a>
-			</p>
+			
 
-			<p class="footer-company-name">DEV &copy; 2019</p>
+			<h3 class="footer-company-name">DEV &copy; 2019</h3>
 		</div>
 
 		<div class="footer-center">

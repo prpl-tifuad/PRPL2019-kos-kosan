@@ -10,9 +10,9 @@
 <?php include('header.php'); ?> 
 
 	
-<div class="side_row" style="background-color:green;">
+<div class="side_row">
 	<div class="side_column">
-		<div class="w3-content" style="max-width:500px" style="max-height:200px">
+		<div class="w3-content" style="max-width:450px" style="max-height:200px">
 			<img class="mySlides" src="image/kamar/kamar1.jpeg" style="width:100%;display:none">
 			<img class="mySlides" src="image/kamar/kamar2.jpeg" style="width:100%">
 			<img class="mySlides" src="image/kamar/kamar3.jpeg" style="width:100%;display:none">
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	
-	<div class="side_column" style="background-color:lime;">
+	<div class="side_column">
 		<?php 
 		require 'sql_connect.php';
 		$sql = 'SELECT * FROM product where Id = 112233';

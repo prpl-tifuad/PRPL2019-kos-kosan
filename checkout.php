@@ -1,3 +1,12 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/sewa.css">
+	<link href="css/index.css" type="text/css" rel="stylesheet" />
+	<link href="css/slideshow.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="script/slideshow.js"></script>
+</head>
+<body align="center">
+
 <?php 
 session_start();
 require 'sql_connect.php';
@@ -35,7 +44,7 @@ if(isset($_SESSION['username'])){?>
 	$cart = unserialize(serialize($_SESSION['cart']));
 	for($i=0; $i<count($cart);$i++) {
 	$sql1 = 'INSERT INTO orders (id, username, datecreation, status, orderid, productid, price, quantity) VALUES 
-	("'.$idpel.'", "'.$namapel.'", "'.$tanggal.'", "berisi", "'.$randm.'", '.$cart[$i]->id.', '.$cart[$i]->price.', '.$cart[$i]->quantity.')';
+	("'.$idpel.'", "'.$namapel.'", "'.$tanggal.'", "Menunggu Konfirmasi", "'.$randm.'", '.$cart[$i]->id.', '.$cart[$i]->price.', '.$cart[$i]->quantity.')';
 	mysqli_query($konek, $sql1);
 	}
 	unset($_SESSION['cart']);
@@ -49,3 +58,5 @@ else{
   echo "maaf anda belum login";
 }
 ?>
+</body>
+</html>
