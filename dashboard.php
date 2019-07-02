@@ -63,7 +63,7 @@ if(isset($_SESSION['username'])){
 							<li>: <?php $noortu= $pelanggan->no_ortu; echo $noortu;?></li>
 							<li>: <?php $alamat= $pelanggan->alamat; echo $alamat;?></li>
 						</ul>
-						<p><a href='form-edit.php?idpel'>Edit</a></p>
+						<p><a href='form-edit.php?id_pel=<?php echo $idpel; ?>'>Edit</a></p>
 					</div>
 	<?php } ?>
 				</div>
