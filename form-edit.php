@@ -1,6 +1,6 @@
 <?php
 include 'sql_connect.php';
-$idpel = $_GET['idpel'];
+$idpel = $_GET['id_pel'];
 $pelanggan  = mysqli_query($konek, "SELECT * FROM pelanggan where id='$idpel'");
 $row        = mysqli_fetch_array($pelanggan);
 // membuat function untuk set aktif radio button
